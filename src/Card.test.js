@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './Card';
+import render from 'react-test-renderer';
 
 // make React available
 
@@ -21,3 +22,12 @@ it('renders without crashing', () => {
     // clean up code
     ReactDOM.unmountComponentAtNode(div);
   });
+
+
+  it('renders as expected', () => {
+    const tree = render.create(<Card
+        title = 'Tenth Card'
+        content = 'whatever'
+  />).toJSON()
+  expect(tree).toMatchSnapshot()
+});
